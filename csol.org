@@ -1,0 +1,58 @@
+#+TITLE: CSOL Working Doc
+
+* What is CSOL?
+
+CSOL, or C Solitaire, is a simple engine for solitaire meant to be run
+on the command line. CSOL uses NCurses for its graphics, but depends
+on no other external libraries.
+
+The first iteration of CSOL shall only include Klondike solitaire
+(standard solitaire), but shall be made extensible in its feature set.
+Hopefully, this will allow for easy modification for the programmer.
+
+CSOL must be:
+- Fast
+- Intuitive
+- Extensible
+
+and thus, any optimizations or additional features shall reflect this.
+
+* Programming CSOL
+
+Several factors need to go into CSOL's development. We will be taking
+a modular design plan. CSOL requires
+
+- [-] Card representation
+  - [X] Structures and initialization
+  - [ ] State swapping
+- [ ] Deck representation
+  - This will be done through in-place arrays, NOT linked lists
+  - Linked lists, while convenient, can be uselessly buggy
+  - [ ] Deck shuffling
+  - [ ] Pile representation, manipulation
+    - Perhaps use bit-board-esque functionality?
+    - draft this out on paper
+- [ ] Card rendering
+  - Arbitrary placement
+  - Options for hidden, selected, and both
+  - Z-buffer for overlapping cards
+- [ ] Deck rendering
+  - Relative placement
+  - Stacked and obscured (1 card) decks
+- Klondike
+  - [ ] Board representation
+  - [ ] Controls
+  - [ ] Conditions of play
+
+* Documentation
+
+All documentation for CSOL shall be written JavaDoc style for Doxygen.
+Similarly, all documentation for CSOL shall be written in HEADER FILES
+ONLY. This makes source easier to read; comments may still exist in
+source sparingly.
+
+* Testing
+
+All tests related to a module's functionality shall go in `tests.c`.
+Tests shall try to cover as many edge-cases as possible, and also
+include standard cases.
