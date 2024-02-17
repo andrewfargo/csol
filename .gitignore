@@ -1,0 +1,15 @@
+# emacs specific
+
+*~
+\#*\#
+
+# Doxygen
+
+*.gch
+html/
+latex/
+
+# C
+
+*.o
+a.out
