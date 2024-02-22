@@ -22,14 +22,14 @@ and thus, any optimizations or additional features shall reflect this.
 Several factors need to go into CSOL's development. We will be taking
 a modular design plan. CSOL requires
 
-- [-] Card representation
+- [X] Card representation
   - [X] Structures and initialization
-  - [ ] State swapping
-- [ ] Deck representation
+  - [X] State swapping
+- [X] Deck representation
   - This will be done through in-place arrays, NOT linked lists
   - Linked lists, while convenient, can be uselessly buggy
-  - [ ] Deck shuffling
-  - [ ] Pile representation, manipulation
+  - [X] Deck shuffling
+  - [X] Pile representation, manipulation
     - Perhaps use bit-board-esque functionality?
     - draft this out on paper
 - [ ] Card rendering
