@@ -1,7 +1,26 @@
 #ifndef __CARD_H
 #define __CARD_H
 
+/**
+ * Gets the 52-card index of a standard deck of playing cards.
+ * @param value The card's value 1-13
+ * @param suit The card's suit
+ * @return index 0-51
+ */
 #define vs_to_index(value, suit) ((suit) * 13 + (value) - 1)
+
+/**
+ * Sees if `suit` is red.
+ * @param suit The suit.
+ * @return Logical true or false
+ */
+#define is_red(suit) ((suit) == SUIT_HEART || (suit) == SUIT_DIAMOND)
+/**
+ * Sees if `suit` is black.
+ * @param suit The suit.
+ * @return Logical true or false
+ */
+#define is_black(suit) ((suit) == SUIT_CLUB || (suit) == SUIT_SPADE)
 
 /**
  * A card's suit.
