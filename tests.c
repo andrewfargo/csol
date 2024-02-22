@@ -16,6 +16,7 @@ int main(int argc, char **argv)
   /* Standard case (Nine of spades) */
   card_t card = newcard(9, SUIT_SPADE);
   sprintname(namebuf, card);
+  printf("%d\n", strcmp(namebuf, " 9S"));
   assert(strcmp(namebuf, " 9S") == 0);
 
   /* Ace should give A */
