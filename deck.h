@@ -2,9 +2,21 @@
 #define __DECK_H
 
 #include <stdlib.h>
+#include <curses.h>
+
 #include "card.h"
 
 
+/**
+ * Which direction should the deck be rendered in?
+ */
+enum deck_direction {
+  DECK_DIRECTION_NONE,  /**< Stacked, like a foundation */
+  DECK_DIRECTION_DOWN,  /**< Downwards, bottom cards highest like tableau */
+  DECK_DIRECTION_RIGHT, /**< Rightwards, right cards highest like waste
+			 *   This will only render three cards at a time.
+			 */
+};
 
 /**
  * A deck (or generic pile) of cards.
@@ -34,6 +46,15 @@ typedef struct {
    * be reworked if one is found.
    */
   size_t obscure_until;
+  /**
+   * Which direction (if any) should the deck be rendered in?
+   */
+  enum deck_direction direction;
+  /**
+   * The NCurses window for which this card is rendered.
+   * Null on standard decks (those are for dealing, generally)
+   */
+  WINDOW *window;
 } deck_t;
 
 /**
@@ -46,6 +67,7 @@ deck_t *newdeck(size_t maxlen);
 
 /**
  * Creates a standard deck of playing cards.
+ * This deck is assumed to never be rendered.
  * @param jokers Should the deck have 2 jokers?
  * @return A standard deck in standard order.
  */

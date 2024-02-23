@@ -3,6 +3,7 @@
 
 #include "card.h"
 #include "deck.h"
+#include "render.h"
 
 /**
  * Game state of Klondike Solitaire.
@@ -16,45 +17,58 @@ enum klondike_state {
   KS_HAND_TAB, /**< We have a card in our hand, its from the tableau */
   KS_HAND_FOUNDATION, /**< It's from the foundation */
   KS_HAND_WASTE /**< It's from the waste */
-}
+};
 
 /**
  * The game context for klondike solitaire.
  * Includes all card data, game state, etc. info.
  */
-
 typedef struct {
+  /**
+   * This is shared memory for pointer casting
+   * compatability. Includes the input callback
+   * and render stack variables.
+   */
+  struct render_context render_context;
+  
   /**
    * The 7 columns as decks (piles)
    */
   deck_t *tableau[7];
+  
   /**
    * The 4 foundations, in order of suit.
    * @see enum suit
    */
   deck_t *foundations[4];
+  
   /**
    * The player's hand.
    * len should be non-zero iff. KS_HANDMODE.
    * @see enum klondike_state
    */
   deck_t *hand;
+  
   /**
    * Face DOWN cards yet to be moved to waste.
    */
   deck_t *stock;
+  
   /**
    * Face UP cards yet to be used in game.
    */
   deck_t *waste;
+  
   /**
    * Current state of the game.
    */
   enum klondike_state state;
+  
   /**
    * Points according to Microsoft Solitaire conventions.
    */
   int points;
+  
   /**
    * Total number of valid moves made.
    */

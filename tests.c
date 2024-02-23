@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "card.h"
 #include "deck.h"
+#include "klondike.h"
 
 int main(int argc, char **argv)
 {
