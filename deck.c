@@ -1,39 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <curses.h>
 
 #include "deck.h"
 #include "card.h"
 
-deck_t*
-newdeck(size_t maxlen)
+void
+newdeck(deck_t *ptr, size_t maxlen)
 {
-  deck_t *ret = malloc(sizeof(deck_t));
-  ret->maxlen = maxlen;
-  ret->data = malloc(sizeof(card_t) * maxlen);
-  ret->len = 0;
-  ret->obscure_until = 0;
-  return ret;
+  ptr->maxlen = maxlen;
+  ptr->data = malloc(sizeof(card_t) * maxlen);
+  ptr->len = 0;
+  ptr->obscure_until = 0;
+  ptr->direction = DECK_DIRECTION_NONE;
+  ptr->window = NULL;
+  ptr->modified = false;
 }
 
-deck_t*
-newdeck_std(bool jokers)
+void
+newdeck_std(deck_t *ptr, bool jokers)
 {
   size_t maxlen = jokers ? 54 : 52;
-  deck_t *ret = newdeck(maxlen);
+  newdeck(ptr, maxlen);
   for(int suit = SUIT_HEART; suit <= SUIT_SPADE; suit++)
     {
       for(int value = 1; value <= VAL_KING; value++)
 	{
-	  ret->data[vs_to_index(value, suit)] = newcard(value, suit);
+	  ptr->data[vs_to_index(value, suit)] = newcard(value, suit);
 	}
     }
   if (jokers)
     {
-      ret->data[52] = newcard(VAL_JOK1, SUIT_HEART);
-      ret->data[53] = newcard(VAL_JOK2, SUIT_CLUB);
+      ptr->data[52] = newcard(VAL_JOK1, SUIT_HEART);
+      ptr->data[53] = newcard(VAL_JOK2, SUIT_CLUB);
     }
-  ret->len = maxlen;
-  return ret;
+  ptr->len = maxlen;
+}
+
+WINDOW *
+place_deck(float y, float x, float height, float width)
+{
+  return newwin((int)(height * CARD_HEIGHT), (int)(width * CARD_WIDTH),
+	 (int)(y * CARD_HEIGHT), (int)(x * CARD_WIDTH));
 }
 
 void
@@ -77,6 +85,8 @@ void
 destroydeck(deck_t *deck)
 {
   free(deck->data);
+  if (deck->window != NULL)
+    delwin(deck->window);
   free(deck);
 }
 
@@ -88,7 +98,7 @@ debug_printdeck(deck_t *deck)
   for (int i = 0; i < deck->len; i++)
     {
       sprintname(buf, deck->data[i]);
-      printf(buf);
+      printf("%3s", buf);
       printf(" ");
     }
   printf("]\n");

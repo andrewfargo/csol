@@ -5,7 +5,7 @@
 #include <curses.h>
 
 #include "card.h"
-
+#include "config.h"
 
 /**
  * Which direction should the deck be rendered in?
@@ -55,6 +55,11 @@ typedef struct {
    * Null on standard decks (those are for dealing, generally)
    */
   WINDOW *window;
+
+  /**
+   * Should this deck be rendered on next iteration?
+   */
+  bool modified;
 } deck_t;
 
 /**
@@ -63,7 +68,7 @@ typedef struct {
  * @return The deck, allocated to memory.
  * @see destroydeck
  */
-deck_t *newdeck(size_t maxlen);
+void newdeck(deck_t *ptr, size_t maxlen);
 
 /**
  * Creates a standard deck of playing cards.
@@ -71,7 +76,7 @@ deck_t *newdeck(size_t maxlen);
  * @param jokers Should the deck have 2 jokers?
  * @return A standard deck in standard order.
  */
-deck_t *newdeck_std(bool jokers);
+void newdeck_std(deck_t *ptr, bool jokers);
 
 /**
  * Deallocates deck specified.
@@ -79,6 +84,17 @@ deck_t *newdeck_std(bool jokers);
  * @see newdeck
  */
 void destroydeck(deck_t *deck);
+
+/**
+ * Returns a pointer to an NCurses window with specified dimensions,
+ * converted from card dimensions.
+ * @param y The y position of the deck in card units
+ * @param x The x position of the deck in card units
+ * @param height The maximum height of the deck in card units
+ * @param width The maximum width of the deck in card units
+ * @return The pointer to the window
+ */
+WINDOW *place_deck(float y, float x, float height, float width);
 
 /**
  * Shuffles the deck reasonably randomly.
