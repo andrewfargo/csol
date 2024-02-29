@@ -7,7 +7,7 @@
  * @param suit The card's suit
  * @return index 0-51
  */
-#define vs_to_index(value, suit) ((suit) * 13 + (value) - 1)
+#define vs_to_index(value, suit) ((suit)*13 + (value)-1)
 
 /**
  * Sees if `suit` is red.
@@ -32,23 +32,22 @@ enum suit {
   SUIT_SPADE,   /**< Spades, printed S */
 };
 
-
 /**
  * Easy definitions for non-standard values.
  */
 enum special_values {
-  VAL_JOK3  = 0,  /**< Atypical in American decks. Printed !
-		   * Assigned Black color (Spades)
-		   */
-  VAL_JACK  = 11, /**< Jack. Printed J */
+  VAL_JOK3 = 0,   /**< Atypical in American decks. Printed !
+                   * Assigned Black color (Spades)
+                   */
+  VAL_JACK = 11,  /**< Jack. Printed J */
   VAL_QUEEN = 12, /**< Queen. Printed Q */
-  VAL_KING  = 13, /**< King. Printed K */
-  VAL_JOK1  = 14, /**< Red Joker. Printed ?
-		   * Assigned Red color (Hearts)
-		   */
-  VAL_JOK2  = 15  /**< Black Joker. Printed ?
-		   * Assigned Black color (Clubs)
-		   */
+  VAL_KING = 13,  /**< King. Printed K */
+  VAL_JOK1 = 14,  /**< Red Joker. Printed ?
+                   * Assigned Red color (Hearts)
+                   */
+  VAL_JOK2 = 15   /**< Black Joker. Printed ?
+                   * Assigned Black color (Clubs)
+                   */
 };
 
 /**
@@ -76,21 +75,5 @@ typedef struct {
  * @return The card.
  */
 card_t newcard(int value, int suit);
-
-/**
- * Prints the card information to a string buffer.
- * More specifically, buffer must be of size 3.
- * Output follows conventions laid out by suit defs
- * and special values.
- *
- * (Example) " KH", "10C" " 4D" " ??" " !!"
- * @param buf A string buffer of size 3 or greater.
- * @param card The card to print.
- * @see enum suit
- * @see enum special_values
- */
-void sprintname(char *buf, card_t card);
-
-
 
 #endif // __CARD_H

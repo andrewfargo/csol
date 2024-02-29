@@ -3,8 +3,6 @@
 
 #include "deck.h"
 
-
-
 /**
  * The generic render context for card games in CSOL.
  * This structure contains the input callback function used
@@ -41,6 +39,5 @@ struct render_context {
 };
 
 void render(deck_t *deck_data, int decks);
-
 
 #endif //__RENDER_H

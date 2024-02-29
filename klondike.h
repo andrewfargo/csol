@@ -13,10 +13,10 @@
  * Two, if we are pulling from the waste, we need to see if we can put it back.
  */
 enum klondike_state {
-  KS_TABMODE, /**< Otherwise, usually to select a tableau */
-  KS_HAND_TAB, /**< We have a card in our hand, its from the tableau */
+  KS_TABMODE,         /**< Otherwise, usually to select a tableau */
+  KS_HAND_TAB,        /**< We have a card in our hand, its from the tableau */
   KS_HAND_FOUNDATION, /**< It's from the foundation */
-  KS_HAND_WASTE /**< It's from the waste */
+  KS_HAND_WASTE       /**< It's from the waste */
 };
 
 /**
@@ -31,35 +31,35 @@ struct klondike_context {
    * data pointers are from this context's array.
    */
   struct render_context render_context;
-  
+
   /**
    * The 7 columns as decks (piles)
    */
   deck_t *tableau;
-  
+
   /**
    * The 4 foundations, in order of suit.
    * @see enum suit
    */
   deck_t *foundations;
-  
+
   /**
    * The player's hand.
    * len should be non-zero iff. KS_HANDMODE.
    * @see enum klondike_state
    */
   deck_t *hand;
-  
+
   /**
    * Face DOWN cards yet to be moved to waste.
    */
   deck_t *stock;
-  
+
   /**
    * Face UP cards yet to be used in game.
    */
   deck_t *waste;
-  
+
   /**
    * Current state of the game.
    */
@@ -74,6 +74,12 @@ struct klondike_context {
 struct render_context *klondike_initialize();
 
 /**
+ * Destroy a klondike_context instance.
+ * @param A render context that was initialized as a klondike context
+ */
+void klondike_destroy(struct render_context *ctx);
+
+/**
  * Interpret input for klondike solitaire.
  * It is safe to assume that `ctx` is klondike_context.
  * @param ctx A klondike context instance
@@ -81,6 +87,5 @@ struct render_context *klondike_initialize();
  * @return 0 if successful operation, 1 if user error
  */
 int klondike_input(struct render_context *ctx, int ch);
-
 
 #endif // __KLONDIKE_H

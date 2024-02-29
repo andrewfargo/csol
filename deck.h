@@ -1,8 +1,8 @@
 #ifndef __DECK_H
 #define __DECK_H
 
-#include <stdlib.h>
 #include <curses.h>
+#include <stdlib.h>
 
 #include "card.h"
 #include "config.h"
@@ -14,15 +14,15 @@ enum deck_direction {
   DECK_DIRECTION_NONE,  /**< Stacked, like a foundation */
   DECK_DIRECTION_DOWN,  /**< Downwards, bottom cards highest like tableau */
   DECK_DIRECTION_RIGHT, /**< Rightwards, right cards highest like waste
-			 *   This will only render three cards at a time.
-			 */
+                         *   This will only render three cards at a time.
+                         */
 };
 
 /**
  * A deck (or generic pile) of cards.
  * Contains an array of cards, the maximum count it occupies,
  * and how much of that count (0 meaning none) is valid.
- * 
+ *
  * The deck operates as a stack, therefore drawing from
  * anywhere but the end is costly, and should be avoided.
  */
@@ -113,13 +113,5 @@ void shuffledeck(deck_t *deck);
  * @return 1 if pop is not possible (n too large), 0 otherwise.
  */
 int npop(deck_t *from, deck_t *to, size_t n);
-
-/**
- * Print the contents of a deck, noting obscured cards.
- * @param deck The deck to print.
- */
-void debug_printdeck(deck_t *deck);
-
-
 
 #endif // __DECK_H

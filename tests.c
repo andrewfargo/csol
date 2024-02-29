@@ -1,17 +1,17 @@
+#include <assert.h>
 #include <stdio.h>
 #include <string.h>
-#include <assert.h>
+
 #include "card.h"
 #include "deck.h"
 #include "klondike.h"
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   /**************************************************
    * Name printing tests                            *
    **************************************************/
   printf("Test: Name printing tests\n");
-  
+
   char namebuf[3];
 
   /* Standard case (Nine of spades) */
@@ -40,12 +40,11 @@ int main(int argc, char **argv)
   sprintname(namebuf, card);
   assert(strcmp(namebuf, " !!") == 0);
 
-
   /**************************************************
    * Deck tests                                     *
    **************************************************/
   printf("Test: Deck tests\n");
-  
+
   /* newdeck returns relatively proper decks */
   deck_t *test_deck = newdeck(0);
   assert(test_deck != NULL);
@@ -103,6 +102,5 @@ int main(int argc, char **argv)
 
   printf("All tests complete!\n");
 
-  
   return 0;
 }
