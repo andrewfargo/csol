@@ -14,3 +14,4 @@ latex/
 *.o
 a.out
 csol-tests
+csol
