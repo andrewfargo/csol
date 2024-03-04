@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -std=c2x
-DEPS = card.h deck.h
+DEPS = card.h deck.h config.h
 OBJ = card.o deck.o render.o klondike.o
 TESTS_OBJ = tests.o
 LIBS = -lncurses

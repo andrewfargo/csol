@@ -33,7 +33,7 @@ void newdeck_std(deck_t *ptr, bool jokers) {
 
 WINDOW *place_deck(float y, float x, float height, float width) {
   return newwin((int)(height * CARD_HEIGHT), (int)(width * CARD_WIDTH),
-                (int)(y * CARD_HEIGHT), (int)(x * CARD_WIDTH));
+                (int)(y * (CARD_HEIGHT + 1)) + 1, (int)(x * (CARD_WIDTH + 1)) + 1);
 }
 
 void data_swap_indices(card_t *data, size_t i, size_t j) {

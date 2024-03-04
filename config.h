@@ -5,16 +5,44 @@
 #define CARD_HEIGHT 8
 
 #include <stdint.h>
+#include <ncurses.h>
 
-static const char *card_back = "|/\\/\\/\\/\\|"
-                               "|\\/\\/\\/\\/|"
-                               "|/\\/\\/\\/\\|"
-                               "|\\/\\/\\/\\/|"
-                               "|/\\/\\/\\/\\|"
-			       "|\\/\\/\\/\\/|";
+/* COLORS */
 
-static const char pip = '*';
+#define WINDOW_BG COLOR_GREEN
 
+#define BACK_FG COLOR_WHITE
+#define BACK_BG COLOR_BLUE
+
+#define RED_FG COLOR_RED
+#define RED_BG COLOR_WHITE
+
+#define BLACK_FG COLOR_BLACK
+#define BLACK_BG COLOR_WHITE
+
+#define STD_FG COLOR_BLACK
+#define STD_BG COLOR_WHITE
+
+#define SEL_FG COLOR_BLUE
+#define SEL_BG COLOR_YELLOW
+
+#define BACK_CHAR ACS_CKBOARD
+
+
+/* CONTROLS */
+
+#define MOVE_UP 'k'
+#define MOVE_DOWN 'j'
+#define MOVE_LEFT 'h'
+#define MOVE_RIGHT 'l'
+#define QUIT 'q'
+#define REFRESH 'g'
+#define PRIMARY KEY_SPACE
+
+/* game specific controls can be found in the [gamemode].h file */
+
+
+#define PIP_CHAR '@'
 
 /* The following definitions encode pip locations as bits according
  * to the following chart:
