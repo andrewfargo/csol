@@ -31,9 +31,13 @@ void newdeck_std(deck_t *ptr, bool jokers) {
   ptr->len = maxlen;
 }
 
+int deck_getxcoord(float x) { return (int)(x * (CARD_WIDTH + 1)) + 1; }
+int deck_getycoord(float y) { return (int)(y * (CARD_HEIGHT + 1)) + 1; }
+
+
 WINDOW *place_deck(float y, float x, float height, float width) {
   return newwin((int)(height * CARD_HEIGHT), (int)(width * CARD_WIDTH),
-                (int)(y * (CARD_HEIGHT + 1)) + 1, (int)(x * (CARD_WIDTH + 1)) + 1);
+                deck_getycoord(y), deck_getxcoord(x));
 }
 
 void data_swap_indices(card_t *data, size_t i, size_t j) {

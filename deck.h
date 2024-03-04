@@ -32,6 +32,9 @@ void newdeck_std(deck_t *ptr, bool jokers);
 
 void destroydeck(deck_t *deck);
 
+int deck_getycoord(float y);
+int deck_getxcoord(float x);
+
 WINDOW *place_deck(float y, float x, float height, float width);
 
 void shuffledeck(deck_t *deck);

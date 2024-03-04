@@ -194,12 +194,13 @@ void render_direction_down(deck_t *deck, bool deck_select, int card_select) {
 
 void render(struct render_context *ctx) {
   for (int i = 0; i < ctx->decks; i++) {
-
     if (!(ctx->deck_data[i].modified || ctx->signal == SIGNAL_RENDER_ALL)) {
-       continue;
+      continue;
     }
-    
+
+    werase(ctx->deck_data[i].window);
     wbkgd(ctx->deck_data[i].window, WINDOW_ATTR);
+    
     switch (ctx->deck_data[i].direction) {
     case DECK_DIRECTION_NONE:
       render_direction_none(&ctx->deck_data[i], ctx->deck_select == i);
@@ -234,7 +235,10 @@ int main(int argc, char **argv) {
   while (ctx->signal != SIGNAL_QUIT) {
     ctx->signal = SIGNAL_NONE;
     render(ctx);
-    if (ctx->input_callback(ctx, getch())) {
+
+    int code = ctx->input_callback(ctx, getch());
+    
+    if (code && FLASH_ON_ERROR) {
       flash();
     }
   }

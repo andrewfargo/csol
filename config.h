@@ -9,6 +9,8 @@
 
 /* COLORS */
 
+#define FLASH_ON_ERROR true
+
 #define WINDOW_BG COLOR_GREEN
 
 #define BACK_FG COLOR_WHITE
@@ -37,10 +39,11 @@
 #define MOVE_RIGHT 'l'
 #define QUIT 'q'
 #define REFRESH 'g'
-#define PRIMARY KEY_SPACE
+#define PRIMARY ' '
 
 /* game specific controls can be found in the [gamemode].h file */
 
+/* PIP DEFINITIONS */
 
 #define PIP_CHAR '@'
 

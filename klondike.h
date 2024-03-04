@@ -5,6 +5,8 @@
 #include "deck.h"
 #include "render.h"
 
+#define CYCLE_MOVEMENT false
+
 enum klondike_state {
   KS_TABMODE,         
   KS_HAND_TAB,        
@@ -23,6 +25,8 @@ struct klondike_context {
   deck_t *waste;
 
   enum klondike_state state;
+  int hand_position;
+  int taken_position;
 };
 
 struct render_context *klondike_initialize();
