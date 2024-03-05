@@ -41,4 +41,6 @@ void shuffledeck(deck_t *deck);
 
 int npop(deck_t *from, deck_t *to, size_t n);
 
+int nflip(deck_t *from, deck_t *to, size_t n);
+
 #endif // __DECK_H

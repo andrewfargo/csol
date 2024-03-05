@@ -7,11 +7,22 @@
 #include <stdint.h>
 #include <ncurses.h>
 
+/* RENDER OPTIONS */
+
+#define ULCORNER ','
+#define URCORNER '.'
+#define LLCORNER '`'
+#define LRCORNER '\''
+#define HLINE '-'
+#define VLINE '|'
+
+#define BACK_CHAR '#'
+
 /* COLORS */
 
 #define FLASH_ON_ERROR true
 
-#define WINDOW_BG COLOR_GREEN
+#define WINDOW_BG COLOR_BLACK
 
 #define BACK_FG COLOR_WHITE
 #define BACK_BG COLOR_BLUE
@@ -27,8 +38,6 @@
 
 #define SEL_FG COLOR_BLUE
 #define SEL_BG COLOR_YELLOW
-
-#define BACK_CHAR ACS_CKBOARD
 
 
 /* CONTROLS */

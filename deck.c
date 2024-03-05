@@ -56,6 +56,20 @@ void shuffledeck(deck_t *deck) {
   }
 }
 
+int nflip(deck_t *from, deck_t *to, size_t n) {
+  if (from->len < n || (to->maxlen - to->len) < n) {
+    return 1;
+  }
+  for (int i = 0; i < n; i++) {
+    size_t from_idx = from->len - 1 - i;
+    size_t to_idx = to->len + i;
+    to->data[to_idx] = from->data[from_idx];
+  }
+  from->len -= n;
+  to->len += n;
+  return 0;
+}
+
 int npop(deck_t *from, deck_t *to, size_t n) {
   if (from->len < n || (to->maxlen - to->len) < n)
     return 1;

@@ -76,25 +76,25 @@ void sprintname(char *buf, card_t card) {
 }
 
 void render_top_at_curs(WINDOW *win) {
-  waddch(win, ACS_ULCORNER);
+  waddch(win, ULCORNER);
   for (int i = 0; i < 8; i++)
-    waddch(win, ACS_HLINE);
-  waddch(win, ACS_URCORNER);
+    waddch(win, HLINE);
+  waddch(win, URCORNER);
 }
 
 void render_bottom_at_curs(WINDOW *win) {
-  waddch(win, ACS_LLCORNER);
+  waddch(win, LLCORNER);
   for (int i = 0; i < 8; i++)
-    waddch(win, ACS_HLINE);
-  waddch(win, ACS_LRCORNER);
+    waddch(win, HLINE);
+  waddch(win, LRCORNER);
 }
 
 void render_sides(WINDOW *win, int yoff) {
     for (int i = 0; i < 6; i++) {
       wmove(win, yoff + i + 1, 0);
-      waddch(win, ACS_VLINE);
+      waddch(win, VLINE);
       wmove(win, yoff + i + 1, 9);
-      waddch(win, ACS_VLINE);
+      waddch(win, VLINE);
     }
 }
 
