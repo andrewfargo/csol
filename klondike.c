@@ -210,8 +210,8 @@ int k_tab_foundation(struct klondike_context *k_ctx) {
       k_ctx->tableau[k_ctx->render_context.deck_select]
           .data[k_ctx->render_context.card_select]
           .value == k_ctx->foundations[foundation]
-                            .data[k_ctx->foundations[foundation].len]
-                            .value -
+                            .data[k_ctx->foundations[foundation].len - 1]
+                            .value +
                     1;
 
   const bool valid = right_card && (right_value || ace_on_empty);
@@ -239,8 +239,8 @@ int k_hand_foundation(struct klondike_context *k_ctx) {
                             k_ctx->foundations[foundation].len == 0;
   const bool right_value = k_ctx->hand->data[0].value ==
                            k_ctx->foundations[foundation]
-                                   .data[k_ctx->foundations[foundation].len]
-                                   .value -
+                                   .data[k_ctx->foundations[foundation].len - 1]
+                                   .value +
                            1;
   const bool valid = right_card && (right_value || ace_on_empty);
   if (!valid) {
